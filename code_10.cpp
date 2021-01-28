@@ -48,3 +48,22 @@ int minJumps(int arr[], int n)
   
     return -1; 
 }
+
+
+
+
+// method 2
+int minJumps(int nums[], int n)
+{
+    vector<int> steps(n,-1);
+    steps[0] = 0;
+    int index_covered = 1;
+    for(int i=0;i<n-1;i++){
+        if(steps[i] == -1) continue;
+        while(index_covered <= i+nums[i] && index_covered < n){
+            steps[index_covered++] = steps[i] +1;
+        }
+    }
+    return steps[n-1];
+    
+}
